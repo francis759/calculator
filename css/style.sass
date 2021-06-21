@@ -1,0 +1,203 @@
+$theme-1-background: hsl(222, 26%, 31%)
+$theme-1-text: #fff
+$theme-1-display: hsl(223, 31%, 20%)
+$theme-1-keypad: hsl(223, 31%, 20%)
+$theme-1-keypad-color: hsl(224, 28%, 35%)
+$theme-1-key-bg: #fff
+$theme-1-key-shadow: hsl(28, 16%, 65%)
+$theme-1-sp-keys: hsl(225, 21%, 49%)
+$theme-1-sp-keys-shadow: hsl(224, 28%, 35%)
+$theme-1-equals: hsl(6, 63%, 50%)
+$theme-1-equals-shadow: hsl(6, 70%, 34%)
+$theme-1-equals-color: $theme-1-text
+
+
+$theme-2-background: hsl(0, 0%, 90%)
+$theme-2-text: hsl(60, 10%, 19%)
+$theme-2-display: hsl(0, 0%, 93%)
+$theme-2-keypad: hsl(0, 5%, 81%)
+$theme-2-keypad-color: $theme-2-text
+$theme-2-key-bg: hsl(45, 7%, 89%)
+$theme-2-key-shadow: hsl(28, 16%, 65%)
+$theme-2-sp-keys: hsl(185, 42%, 37%)
+$theme-2-sp-keys-shadow: hsl(185, 58%, 25%)
+$theme-2-equals: hsl(25, 98%, 40%)
+$theme-2-equals-shadow: hsl(25, 99%, 27%)
+$theme-2-equals-color: #fff
+
+body 
+    margin: 0
+    padding: 0
+    font-family: Spartan
+
+
+.container 
+    width: 100%
+    height: 100vh
+    padding: 5%
+    box-sizing: border-box
+
+
+
+header 
+    position: relative
+    
+    .toggle
+        position: absolute
+        right: 0
+        top: 0
+
+        .switch 
+            position: relative 
+            display: inline-block 
+            width: 40px 
+            height: 20px 
+
+            input 
+                opacity: 0 
+                width: 0 
+                height: 0 
+            
+
+            .slider  
+                position: absolute 
+                cursor: pointer 
+                top: 0 
+                left: 0 
+                right: 0 
+                bottom: 0 
+                background-color: #ccc 
+                -webkit-transition: .4s 
+                transition: .4s 
+                
+
+                &:before  
+                    position: absolute 
+                    content: "" 
+                    height: 15px 
+                    width: 15px 
+                    left: 4px 
+                    bottom: 3px 
+                    background-color: white 
+                    -webkit-transition: .4s 
+                    transition: .4s 
+                
+
+            input:checked + .slider  
+                background-color: $theme-1-display 
+                
+
+            input:focus + .slider  
+                box-shadow: 0 0 1px $theme-1-display
+                
+
+            input:checked + .slider:before  
+                transform: translateX(18px) 
+                
+            .slider.round  
+                border-radius: 34px 
+                
+
+                &:before  
+                    border-radius: 50% 
+            
+
+.display
+    padding: 30px 20px
+    font-size: 32px
+    font-weight: 700
+    text-align: right
+    border-radius: 10px
+    margin-bottom: 20px
+
+.keypad
+    border-radius: 10px
+    padding: 20px
+
+    .keys
+        display: grid
+        grid-template-columns: repeat(4,1fr)
+        grid-gap: 15px
+
+        .key,.del,.reset,.equals
+            padding: 11px
+            text-align: center
+            font-weight: 700
+            font-size: 25px
+            border-radius: 3px
+            height: 30px
+            line-height: 30px
+            transition: box-shadow ease-in 100ms
+
+            &:active
+                box-shadow: none
+
+        .del, .reset
+            font-size: 15px
+            
+        .reset
+            grid-column: 1/3
+        
+        .equals
+            grid-column: 3/5
+            font-size: 20px
+
+
+.theme-one
+    background: $theme-1-background
+
+    header
+        h3
+            color: $theme-1-text
+
+    .display
+        background: $theme-1-display
+        color: $theme-1-text
+
+    .keypad
+       background: $theme-1-keypad
+       
+       .key
+           background: $theme-1-key-bg
+           color: $theme-1-keypad-color
+           box-shadow: 0px 3px 0px 0px $theme-1-key-shadow
+
+       .del, .reset
+            color: $theme-1-equals-color
+            background: $theme-1-sp-keys
+            box-shadow: 0px 3px 2px 0px $theme-1-sp-keys-shadow
+
+       .equals
+            color: $theme-1-text
+            background: $theme-1-equals
+            box-shadow: 0px 3px 2px 0px $theme-1-equals-shadow
+
+
+.theme-two
+    background: $theme-2-background
+
+    header
+        h3
+            color: $theme-2-text
+
+    .display
+        background: $theme-2-display
+        color: $theme-2-text
+
+    .keypad
+       background: $theme-2-keypad
+       
+       .key
+           background: $theme-2-key-bg
+           color: $theme-2-keypad-color
+           box-shadow: 0px 3px 0px 0px $theme-2-key-shadow
+
+       .del, .reset
+            color: $theme-2-equals-color
+            background: $theme-2-sp-keys
+            box-shadow: 0px 3px 2px 0px $theme-2-sp-keys-shadow
+
+       .equals
+            color: $theme-2-equals-color
+            background: $theme-2-equals
+            box-shadow: 0px 3px 2px 0px $theme-2-equals-shadow
