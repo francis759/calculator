@@ -94,9 +94,8 @@ function getKeyValue(e){
     else if(e.target.className === "key equals"){
         try {
             let answer = solveExpression(displayValue.innerHTML);
-            window.alert(answer);
             displayValue.innerHTML = answer;
-             index = 0;
+            index = 0;
         } catch (error) {
             window.alert(error);
         }
