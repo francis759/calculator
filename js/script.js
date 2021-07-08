@@ -1,58 +1,6 @@
-let index = 0;
-function evaluateAdditions(exp){
-    let num1 = evaluateDivisors(exp);
-    while(true){
-        var op = exp[index];
-        if(op !=='+' && op !=='-'){
-            return num1;
-        }
-        index++;
-        let num2 = evaluateDivisors(exp);
-        if(op === '+'){
-            num1+=num2;
-        }
-        else{
-            num1-=num2;
-        }
-    }
-}
-function evaluateDivisors(exp){
-    let num1 = getNumber(exp);
-    while(true){
-        var op = exp[index];
-        if(op !=='÷' && op !=='×'){
-            return num1;
-        }
-        index++;
-        let num2 = getNumber(exp);
-        if(op === '÷'){
-            num1/=num2;
-        }
-        else{
-            num1*=num2;
-        }
-    }
-}
-
-function getNumber(exp){
-    /* By using ASCII table values we fetch the integer values of characters from 0 to 9 and decimal(.) */
-    let result = "";
-    while( (exp.charCodeAt(index)>= 48 && exp.charCodeAt(index) <= 57)  || exp.charCodeAt(index) === 46){
-        result+= exp[index];
-        index+=1;
-        if(index === exp.length){
-            break;
-        }
-    }
-    return parseFloat(result);
-}
-function solveExpression(expression){
-    let expr = expression.replace(/\s/g, '');
-
-    return evaluateAdditions(expr,0);
-}
 function getKeyValue(e){
     let displayValue = document.getElementsByClassName('display')[0];
+
     if(e.target.className === "key" || e.target.className === "key decimal"){
         if(displayValue.innerHTML === "0"){
             displayValue.innerHTML = e.target.innerHTML;
@@ -102,3 +50,5 @@ function getKeyValue(e){
        
     }
 }
+
+document.addEventListener('click',getKeyValue);
