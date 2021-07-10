@@ -1,6 +1,5 @@
 let operators = ['÷','×','+','-']
 let display = document.querySelector('.display');
-let toggle = document.querySelector('.toggle input');
 
 function changeTheme(e){
     const parent = e.target.closest('.container');
