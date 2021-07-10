@@ -51,7 +51,7 @@ function getKeyValue(e){
     else if(e.target.className === "key equals"){
         try {
             let expression = display.innerHTML;
-            display.innerHTML = eval(expression.replace(/\s+/g,'').replace('÷','/').replace('×','*'));
+            display.innerHTML = eval(expression.replace(/\s+/g,'').replace(/\÷/g,'/').replace(/\×/g,'*'));
             index = 0;
         } catch (error) {
             display.innerHTML = 'Error';
