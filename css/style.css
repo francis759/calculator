@@ -27,7 +27,7 @@ header .toggle .switch input {
         width: 0;
         height: 0; 
 }
-      header .toggle .switch .slider {
+header .toggle .switch .slider {
         position: absolute;
         cursor: pointer;
         top: 0;
@@ -36,8 +36,9 @@ header .toggle .switch input {
         bottom: 0;
         background-color: #ccc;
         -webkit-transition: .4s;
-        transition: .4s; }
-        header .toggle .switch .slider:before {
+        transition: .4s; 
+}
+header .toggle .switch .slider:before {
           position: absolute;
           content: "";
           height: 15px;

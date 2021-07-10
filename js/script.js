@@ -1,54 +1,71 @@
-function getKeyValue(e){
-    let displayValue = document.getElementsByClassName('display')[0];
+let operators = ['÷','×','+','-']
+let display = document.querySelector('.display');
+let toggle = document.querySelector('.toggle input');
 
+function changeTheme(e){
+    const parent = e.target.closest('.container');
+    if(parent.classList.contains('theme-two')) {
+        parent.classList.replace('theme-two','theme-one')
+    } else {
+        parent.classList.replace('theme-one','theme-two')
+    }
+}
+
+function getKeyValue(e){
     if(e.target.className === "key" || e.target.className === "key decimal"){
-        if(displayValue.innerHTML === "0"){
-            displayValue.innerHTML = e.target.innerHTML;
+        if(display.innerHTML === "0"){
+            display.innerHTML = e.target.innerHTML;
         }
         else{
-            displayValue.innerHTML+=e.target.innerHTML;
+            display.innerHTML+=e.target.innerHTML;
         }
     }
-    else if(e.target.className === "key add" || e.target.className === "key minus" ||
-    e.target.className === "key multiply" || e.target.className === "key divide"){
-        if(displayValue.innerHTML === "0"){
-            displayValue.innerHTML = e.target.innerHTML;
+    else if(operators.includes(e.target.innerHTML)){
+        if(display.innerHTML === "0"){
+            display.innerHTML = e.target.innerHTML;
         }
         else{
-            displayValue.innerHTML+=" "+e.target.innerHTML+" ";
+            display.innerHTML+=" "+e.target.innerHTML+" ";
         }
     }
     else if(e.target.className === "reset"){
-        displayValue.innerHTML = "0";
+        display.innerHTML = "0";
     }
 
     // Delete function
     else if(e.target.className === "del"){
-        let expr = displayValue.innerHTML ;
+        let expr = display.innerHTML ;
         if(expr.length !== 0){
             if(expr.charAt(expr.length-1) === " "){
                 expr = expr.slice(0, expr.length-2);
-                displayValue.innerHTML = expr;
+                display.innerHTML = expr;
             }
             else if(expr.length === 1 || expr === "NaN"){
-                displayValue.innerHTML = 0;
+                display.innerHTML = 0;
             }
             else{
                 expr = expr.slice(0, expr.length-1);
-                displayValue.innerHTML = expr;
+                display.innerHTML = expr;
             }
         }
     }
     else if(e.target.className === "key equals"){
         try {
-            let answer = solveExpression(displayValue.innerHTML);
-            displayValue.innerHTML = answer;
+            let expression = display.innerHTML;
+            display.innerHTML = eval(expression.replace(/\s+/g,'').replace('÷','/').replace('×','*'));
             index = 0;
         } catch (error) {
-            window.alert(error);
+            display.innerHTML = 'Error';
         }
        
     }
 }
 
-document.addEventListener('click',getKeyValue);
+document.addEventListener('click',function(e){
+    if(e.target.classList.contains('key')||e.target.classList.contains('reset')||e.target.classList.contains('del')){
+        getKeyValue(e)
+    }
+    else if(e.target.type === 'checkbox'){
+        changeTheme(e);
+    }
+})
